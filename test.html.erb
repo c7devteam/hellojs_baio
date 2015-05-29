@@ -1,0 +1,47 @@
+
+<script>
+    hello.init({ 
+        baio : "92b2871e5d7152230e047998dfdd8121a8d82a98472ff5abee2bf3bd4f967cd4"
+    }
+    );
+
+    hello.on('auth.login', function(auth) {
+        // Call user information, for the given network
+        hello(auth.network).api('/me').then(function(r) {
+            
+            $("div#baio").html('Signed in as ' + r.email + ' ' + r.first_name + ' ' + r.last_name);
+        });
+    });
+
+    function login(){
+      hello('baio').login({
+        response_type: 'token'
+      }).then(function() {
+          console.log('You are signed in to BAIO');
+          console.log(hello('baio').getAuthResponse());
+      }, function(e) {
+          console.log('Signin error: ' + e.error.message + " " +e.error.code);
+      });
+    };
+
+    function logout(){
+      hello('baio').logout().then(function() {
+        console.log('Signed out');
+        console.log(hello('baio').getAuthResponse());
+      }, function(e) {
+        console.log('Signed out error: ' + e.error.message);
+      }); 
+    };
+
+    function me(){
+      hello('baio').api('me').then(function(json) {
+        alert('Your name is ' + json.first_name);
+      }, function(e) {
+        alert('Whoops! ' + e.error.message);
+      });
+    };
+</script>
+<div id="baio"></div>
+<button onclick="login();">BAIO</button>
+<button onclick="me();">Me</button>
+<button onclick="logout();">BAIO logout</button>
