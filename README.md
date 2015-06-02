@@ -31,9 +31,7 @@ This is a small module for hello.js OAuth
 ```
 You can add some callbacks this way
 ```javascript
-      hello('baio').login({
-        response_type: 'token'
-      }).then(function() {
+      hello('baio').login().then(function() {
           console.log('You are signed in to BAIO');
           console.log(hello('baio').getAuthResponse());
       }, function(e) {
