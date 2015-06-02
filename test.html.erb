@@ -1,7 +1,7 @@
 
 <script>
     hello.init({ 
-        baio : "92b2871e5d7152230e047998dfdd8121a8d82a98472ff5abee2bf3bd4f967cd4"
+        baio : "app_id"
     }
     );
 
@@ -14,9 +14,7 @@
     });
 
     function login(){
-      hello('baio').login({
-        response_type: 'token'
-      }).then(function() {
+      hello('baio').login().then(function() {
           console.log('You are signed in to BAIO');
           console.log(hello('baio').getAuthResponse());
       }, function(e) {
